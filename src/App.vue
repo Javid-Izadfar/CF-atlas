@@ -1,47 +1,34 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import JayContainer from '@/components/base/JayContainer.vue'
+import JayRow from '@/components/base/JayRow.vue'
+import JayButton from '@/components/base/JayButton.vue'
+import JayCard from '@/components/base/JayCard.vue'
+import JayIcon from '@/components/base/JayIcon.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="wrapper">
+    <JayContainer>
+      <JayRow>
+        <div>
+          <JayButton>Learn More</JayButton>
+        </div>
+        <div>
+          <JayCard>
+            asf
+            <JayIcon name="heart-empty" size="10" />
+            <JayIcon name="heart-filled" size="10" />
+            <template #header>header</template>
+            <template #footer>footer</template>
+          </JayCard>
+        </div>
+      </JayRow>
+    </JayContainer>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.wrapper {
+  padding: 80px 0;
 }
 </style>
