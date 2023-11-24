@@ -1,7 +1,14 @@
 <template>
   <div class="wrapper">
     <JayContainer>
-      <JayRow>
+      <JayRow class="no-wrap align-center">
+        <header class="title">
+          <h1>Atlas: The Ultimate Guide to the World</h1>
+          <p>Atlas is a website that lists every country with their flags and facts. You can explore the world map,
+            search by name or region, and filter by criteria. Learn about the world and its diversity with Atlas!</p>
+        </header>
+      </JayRow>
+      <JayRow class="country-list">
         <CountryCard v-for="country in countries" :key="country.cca2" :country="country" class="country" />
       </JayRow>
     </JayContainer>
@@ -214,9 +221,37 @@ const countries = [
   padding: 80px 0;
 }
 
+.title {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.title h1 {
+  color: var(--black);
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -1.2px;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: var(--black);
+  opacity: 0.7;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.country-list {
+  padding-top: 30px;
+}
+
 .country {
   --columns: 1;
-  margin-bottom: calc(var(--row-gap) / 2);
+  margin-bottom: var(--row-gap);
   flex-basis: calc(100% / var(--columns));
   max-width: calc(100% / var(--columns));
 }
