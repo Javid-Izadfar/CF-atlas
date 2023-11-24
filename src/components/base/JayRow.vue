@@ -17,6 +17,6 @@
 .j-row>* {
     flex-grow: 1;
     flex-shrink: 1;
-    padding: calc(var(--row-gap) / 2);
+    padding: 0 calc(var(--row-gap) / 2);
 }
 </style>

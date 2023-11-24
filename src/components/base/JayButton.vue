@@ -1,17 +1,28 @@
 <template>
-    <button class="j-button">
+    <button v-if="!isIconOnly" class="j-button j-button--default">
         <slot />
+        <JayIcon v-if="icon" :name="icon" />
+    </button>
+    <button v-else-if="isIconOnly" class="j-button j-button--icon-only">
+        <JayIcon v-if="icon" :name="icon" />
     </button>
 </template>
+
+<script setup>
+import { string, bool } from 'vue-types'
+
+import JayIcon from '@/components/base/JayIcon.vue'
+
+defineProps({
+    icon: string(),
+    isIconOnly: bool().def(false),
+})
+</script>
   
 <style scoped>
 .j-button {
-    display: inline-flex;
-    padding: 8px 16px;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    border-radius: 8px;
     cursor: pointer;
     color: var(--black);
     font-size: 14px;
@@ -29,6 +40,18 @@
         0px 1px 0px 0px rgba(0, 0, 0, 0.05),
         0px 4px 4px 0px rgba(0, 0, 0, 0.05),
         0px 10px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.j-button--default {
+    display: inline-flex;
+    padding: 8px 16px;
+    gap: 8px;
+    border-radius: 8px;
+}
+
+.j-button--icon-only {
+    padding: 8px;
+    border-radius: 36px;
 }
 </style>
   

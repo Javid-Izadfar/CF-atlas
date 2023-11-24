@@ -1,5 +1,5 @@
 <template>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="j-icon" :width="size" :height="size" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g v-if="name === 'angle-small-down'">
             <path
                 d="M9.99993 12.9167C9.78109 12.9171 9.56433 12.8742 9.36211 12.7906C9.1599 12.7069 8.97621 12.5841 8.8216 12.4292L4.41077 8.01757L5.5891 6.83923L9.99993 11.2501L14.4108 6.83923L15.5891 8.01757L11.1783 12.4284C11.0237 12.5834 10.8401 12.7064 10.6378 12.7902C10.4356 12.874 10.2188 12.917 9.99993 12.9167Z"
@@ -35,6 +35,12 @@ import { string, oneOfType, number } from 'vue-types'
 
 defineProps({
     name: string(),
-    size: oneOfType([number(), string().validate(v => !isNaN(+v))])
+    size: oneOfType([number(), string().validate(v => !isNaN(+v))]).def(20)
 })
 </script>
+
+<style scoped>
+.j-icon {
+    display: block;
+}
+</style>

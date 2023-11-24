@@ -19,19 +19,27 @@ defineProps({
     border-radius: 10px;
     position: relative;
     height: 150px;
-    box-shadow: 0px 30px 60px 0px rgba(0, 0, 0, 0.10), 0px 30px 60px 0px rgba(0, 0, 0, 0.50);
+    box-shadow: 0px 30px 60px 0px rgba(0, 0, 0, 0.10);
 }
 
-.j-img:after {
+.j-img::before,
+.j-img::after {
     content: '';
     width: 100%;
     height: 100%;
-    mix-blend-mode: lighten;
-    border: solid 1px var(--border-color);
     position: absolute;
     inset: 0;
     z-index: 2;
     border-radius: 10px;
+}
+
+.j-img::before {
+    box-shadow: 0px 10px 40px -5px rgba(0, 0, 0, 0.2);
+    mix-blend-mode: overlay;
+}
+
+.j-img:after {
+    border: solid 1px var(--border-color);
 }
 
 .j-img-content {

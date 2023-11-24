@@ -16,3 +16,11 @@ body {
   background-color: var(--blue-gray);
   font-family: 'Inter', sans-serif;
 }
+
+.no-wrap {
+  flex-wrap: nowrap !important;
+}
+
+.align-center {
+  align-items: center;
+}
