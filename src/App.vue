@@ -7,19 +7,30 @@
           <p>Atlas is a website that lists every country with their flags and facts. You can explore the world map,
             search by name or region, and filter by criteria. Learn about the world and its diversity with Atlas!</p>
         </header>
+        <div>
+          <CountryFilters :region="regionFilter" @select-region="applyFilterRegion" />
+        </div>
       </JayRow>
-      <JayRow class="country-list">
-        <CountryCard v-for="country in countries" :key="country.cca2" :country="country" class="country" />
+      <JayRow v-show="visibleCountries.length" class="country-list">
+        <CountryCard v-for="country in visibleCountries" :key="country.cca2" :country="country" class="country" />
       </JayRow>
+      <div class="no-result" v-show="!visibleCountries.length">
+        <code style="opacity: 0.4;">// TODO: Add no result</code>
+      </div>
     </JayContainer>
   </div>
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+
 import JayContainer from '@/components/base/JayContainer.vue'
 import JayRow from '@/components/base/JayRow.vue'
 import CountryCard from '@/components/countries/CountryCard.vue'
+import CountryFilters from '@/components/countries/CountryFilters.vue'
 
+const regionFilter = ref(undefined)
+const applyFilterRegion = (region) => regionFilter.value = region
 const countries = [
   {
     "flags": {
@@ -214,16 +225,27 @@ const countries = [
     "population": 7275556
   }
 ]
+const visibleCountries = computed(() => {
+  if (regionFilter.value) {
+    return countries.filter(country => country.region === regionFilter.value)
+  }
+  return countries
+})
+
 </script>
 
 <style scoped>
 .wrapper {
   padding: 80px 0;
+  min-height: 100vh;
 }
 
 .title {
   padding-top: 20px;
   padding-bottom: 20px;
+  width: 841px;
+  max-width: 100%;
+  flex-grow: 0;
 }
 
 .title h1 {
@@ -245,8 +267,13 @@ const countries = [
   line-height: 24px;
 }
 
-.country-list {
+.country-list,
+.no-result {
   padding-top: 30px;
+}
+
+.no-result {
+  height: 50vh;
 }
 
 .country {

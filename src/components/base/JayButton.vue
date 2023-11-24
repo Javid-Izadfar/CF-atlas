@@ -1,9 +1,9 @@
 <template>
-    <button v-if="!isIconOnly" class="j-button j-button--default">
-        <slot />
+    <button v-if="isIconOnly" class="j-button j-button--icon-only">
         <JayIcon v-if="icon" :name="icon" />
     </button>
-    <button v-else-if="isIconOnly" class="j-button j-button--icon-only">
+    <button v-else class="j-button j-button--default">
+        <slot />
         <JayIcon v-if="icon" :name="icon" />
     </button>
 </template>
@@ -21,6 +21,7 @@ defineProps({
   
 <style scoped>
 .j-button {
+    user-select: none;
     font-family: Inter;
     justify-content: center;
     align-items: center;

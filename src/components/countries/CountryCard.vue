@@ -4,20 +4,18 @@
             <template #header>
                 <JayImg :src="country.flags.png" :alt="country.flags.alt" height="150" />
             </template>
-            <div>
-                <JayRow class="name-wrapper align-center no-wrap">
-                    <h3 class="name">
-                        {{ country.name.common }}
-                    </h3>
-                    <label class="fav">
-                        <JayButton :icon="isFav ? 'heart-filled' : 'heart-empty'" :is-icon-only="true" @click="toggleFav" />
-                        <input v-model="isFav" type="checkbox" name="isFav">
-                    </label>
-                </JayRow>
-                <p class="description">
-                    {{ description }}
-                </p>
-            </div>
+            <JayRow class="name-wrapper align-center no-wrap">
+                <h3 class="name">
+                    {{ country.name.common }}
+                </h3>
+                <label class="fav">
+                    <JayButton :icon="isFav ? 'heart-filled' : 'heart-empty'" :is-icon-only="true" @click="toggleFav" />
+                    <input v-model="isFav" type="checkbox" name="isFav">
+                </label>
+            </JayRow>
+            <p class="description">
+                {{ description }}
+            </p>
             <template #footer>
                 <JayButton icon="angle-small-right">
                     Learn More
@@ -85,7 +83,6 @@ const calcPopulation = (number, name) => {
     }
     count = Math.floor(count * roundPow) / roundPow
 
-    console.log(title, count, name)
     return `${count} ${title}`
 
 }
@@ -123,7 +120,7 @@ const description = computed(() => {
 }
 
 .name-wrapper {
-    padding: 10px 0;
+    margin-top: 10px;
 }
 
 .description {
