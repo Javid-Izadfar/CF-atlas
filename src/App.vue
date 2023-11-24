@@ -7,7 +7,7 @@
           <p>Atlas is a website that lists every country with their flags and facts. You can explore the world map,
             search by name or region, and filter by criteria. Learn about the world and its diversity with Atlas!</p>
         </header>
-        <div>
+        <div class="filters">
           <CountryFilters :region="regionFilter" @select-region="applyFilterRegion" />
         </div>
       </JayRow>
@@ -281,6 +281,13 @@ const visibleCountries = computed(() => {
   margin-bottom: var(--row-gap);
   flex-basis: calc(100% / var(--columns));
   max-width: calc(100% / var(--columns));
+}
+
+@media screen and (max-width: 1200px) {
+  .filters {
+    display: none
+  }
+
 }
 
 @media screen and (min-width: 720px) and (max-width: 1200px) {
