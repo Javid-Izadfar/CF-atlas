@@ -21,6 +21,7 @@ defineProps({
   
 <style scoped>
 .j-button {
+    font-family: Inter;
     justify-content: center;
     align-items: center;
     cursor: pointer;

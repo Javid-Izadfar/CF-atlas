@@ -8,11 +8,11 @@
                 <JayRow class="name-wrapper align-center no-wrap">
                     <h3 class="name">
                         {{ country.name.common }}
-                        {{ country.name.common }}
                     </h3>
-                    <div class="fav">
-                        <JayButton :icon="'heart-empty'" :is-icon-only="true" />
-                    </div>
+                    <label class="fav">
+                        <JayButton :icon="isFav ? 'heart-filled' : 'heart-empty'" :is-icon-only="true" @click="toggleFav" />
+                        <input v-model="isFav" type="checkbox" name="isFav">
+                    </label>
                 </JayRow>
                 <p class="description">
                     {{ description }}
@@ -28,13 +28,13 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
 import { shape, string, bool, number } from 'vue-types'
 
 import JayRow from '@/components/base/JayRow.vue'
 import JayCard from '@/components/base/JayCard.vue'
 import JayImg from '@/components/base/JayImg.vue'
 import JayButton from '@/components/base/JayButton.vue'
-import { computed } from 'vue'
 
 const props = defineProps({
     country: shape({
@@ -54,6 +54,11 @@ const props = defineProps({
         population: number()
     })
 })
+
+const isFav = ref(false)
+const toggleFav = () => {
+    isFav.value = !isFav.value
+}
 
 const calcPopulation = (number, name) => {
     const numberLength = number.toString().length
@@ -110,6 +115,11 @@ const description = computed(() => {
 
 .fav {
     flex-grow: 0;
+}
+
+.fav input {
+    position: absolute;
+    visibility: hidden;
 }
 
 .name-wrapper {
