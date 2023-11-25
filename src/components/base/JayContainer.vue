@@ -1,8 +1,16 @@
 <template>
-    <div class="j-container">
+    <component :is="tag" class="j-container">
         <slot />
-    </div>
+    </component>
 </template>
+
+<script setup>
+import { string } from 'vue-types'
+
+defineProps({
+    tag: string().def('div')
+})
+</script>
   
 <style scoped>
 .j-container {

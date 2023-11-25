@@ -1,20 +1,21 @@
 <template>
-    <div :class="isSimple ? 'j-card j-card--simple' : 'j-card j-card--default'">
-        <div class="j-card-header">
+    <component :is="tag" :class="['j-card', `j-card--${isSimple ? 'simple' : 'default'}`]">
+        <div v-if="$slots.header" class="j-card-header">
             <slot name="header" />
         </div>
         <slot />
-        <div class="j-card-footer">
+        <div v-if="$slots.footer" class="j-card-footer">
             <slot name="footer" />
         </div>
-    </div>
+    </component>
 </template>
 
 <script setup>
-import { bool } from 'vue-types'
+import { bool, string } from 'vue-types'
 
 defineProps({
     isSimple: bool().def(false),
+    tag: string().def('div')
 })
 </script>
 

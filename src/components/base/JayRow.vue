@@ -1,8 +1,16 @@
 <template>
-    <div class="j-row">
+    <component :is="tag" class="j-row">
         <slot />
-    </div>
+    </component>
 </template>
+
+<script setup>
+import { string } from 'vue-types'
+
+defineProps({
+    tag: string().def('div')
+})
+</script>
   
 <style scoped>
 .j-row {

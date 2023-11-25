@@ -11,8 +11,10 @@
           <CountryFilters :region="regionFilter" @select-region="applyFilterRegion" />
         </div>
       </JayRow>
-      <JayRow v-show="visibleCountries.length" class="country-list">
-        <CountryCard v-for="country in visibleCountries" :key="country.cca2" :country="country" class="country" />
+      <JayRow v-show="visibleCountries.length" tag="ul" class="country-list">
+        <li v-for="country in visibleCountries" :key="country.cca2" class="country">
+          <CountryCard :country="country" />
+        </li>
       </JayRow>
       <div class="no-result" v-show="!visibleCountries.length">
         <code style="opacity: 0.4;">// TODO: Add no result</code>

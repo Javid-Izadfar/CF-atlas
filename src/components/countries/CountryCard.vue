@@ -1,28 +1,26 @@
 <template>
-    <div>
-        <JayCard v-if="country">
-            <template #header>
-                <JayImg :src="country.flags.png" :alt="country.flags.alt" height="150" />
-            </template>
-            <JayRow class="name-wrapper align-center no-wrap">
-                <h3 class="name">
-                    {{ country.name.common }}
-                </h3>
-                <label class="fav">
-                    <JayButton :icon="isFav ? 'heart-filled' : 'heart-empty'" :is-icon-only="true" @click="toggleFav" />
-                    <input v-model="isFav" type="checkbox" name="isFav">
-                </label>
-            </JayRow>
-            <p class="description">
-                {{ description }}
-            </p>
-            <template #footer>
-                <JayButton icon="angle-small-right">
-                    Learn More
-                </JayButton>
-            </template>
-        </JayCard>
-    </div>
+    <JayCard v-if="country">
+        <template #header>
+            <JayImg :src="country.flags.png" :alt="country.flags.alt" height="150" />
+        </template>
+        <JayRow class="name-wrapper align-center no-wrap">
+            <h3 class="name">
+                {{ country.name.common }}
+            </h3>
+            <label class="fav">
+                <JayButton :icon="isFav ? 'heart-filled' : 'heart-empty'" tag="span" is-icon-only @click="toggleFav" />
+                <input v-model="isFav" type="checkbox" name="isFav">
+            </label>
+        </JayRow>
+        <p class="description">
+            {{ description }}
+        </p>
+        <template #footer>
+            <JayButton tag="a" icon="angle-small-right">
+                Learn More
+            </JayButton>
+        </template>
+    </JayCard>
 </template>
 
 <script setup>
@@ -37,19 +35,19 @@ import JayButton from '@/components/base/JayButton.vue'
 const props = defineProps({
     country: shape({
         flags: shape({
-            png: string(),
+            png: string().isRequired,
             svg: string(),
-            alt: string()
+            alt: string().isRequired
         }),
         cca2: string(),
         name: shape({
-            common: string(),
-            official: string(),
+            common: string().isRequired,
+            official: string().isRequired,
         }),
-        independent: bool(),
+        independent: bool().isRequired,
         region: string(),
-        subregion: string(),
-        population: number()
+        subregion: string().isRequired,
+        population: number().isRequired
     })
 })
 
@@ -58,7 +56,7 @@ const toggleFav = () => {
     isFav.value = !isFav.value
 }
 
-const calcPopulation = (number, name) => {
+const calcPopulation = (number) => {
     const numberLength = number.toString().length
 
     let title = ''
@@ -88,12 +86,15 @@ const calcPopulation = (number, name) => {
 }
 
 const description = computed(() => {
-    const name = props.country?.name?.official
-    const type = props.country.independent ? 'an independent country' : 'a dependent territory'
-    const subregion = props.country?.subregion
-    const population = calcPopulation(props.country?.population || 0, name)
+    if (props.country) {
+        const name = props.country.name?.official
+        const type = props.country.independent ? 'an independent country' : 'a dependent territory'
+        const subregion = props.country.subregion
+        const population = calcPopulation(props.country.population || 0)
 
-    return `${name} is ${type} in ${subregion} with an estimated population of over ${population} people.`
+        return `${name} is ${type} in ${subregion} with an estimated population of over ${population} people.`
+    }
+    return 'No Data!'
 })
 </script>
 

@@ -1,26 +1,25 @@
 <template>
-    <button v-if="isIconOnly" class="j-button j-button--icon-only">
+    <component :is="tag" :class="['j-button', `j-button--${isIconOnly ? 'icon-only' : 'default'}`]">
+        <slot v-if="!isIconOnly" />
         <JayIcon v-if="icon" :name="icon" />
-    </button>
-    <button v-else class="j-button j-button--default">
-        <slot />
-        <JayIcon v-if="icon" :name="icon" />
-    </button>
+    </component>
 </template>
 
 <script setup>
-import { string, bool } from 'vue-types'
+import { string, bool, oneOf } from 'vue-types'
 
 import JayIcon from '@/components/base/JayIcon.vue'
 
 defineProps({
     icon: string(),
     isIconOnly: bool().def(false),
+    tag: oneOf(['button', 'span', 'a']).def('button')
 })
 </script>
   
 <style scoped>
 .j-button {
+    display: inline-block;
     user-select: none;
     font-family: Inter;
     justify-content: center;
