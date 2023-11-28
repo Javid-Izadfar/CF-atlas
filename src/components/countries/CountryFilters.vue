@@ -9,12 +9,12 @@
                     {{ dropdownTitle }}
                 </JayButton>
             </div>
-            <JayCard v-show="isDropdownOpen" class="filter-options">
-                <div v-for="option in filterOptions" :key="option.value"
-                    :class="option.value === region ? 'filter-options-item selected' : 'filter-options-item'"
+            <JayCard v-show="isDropdownOpen" tag="ul" class="filter-options">
+                <li v-for="option in filterOptions" :key="option.value"
+                    :class="['filter-options-item', option.value === localModelValue ? ' selected' : '']"
                     @click="onRegionSelect(option)">
                     {{ option.label }}
-                </div>
+                </li>
             </JayCard>
         </JayCard>
     </div>
@@ -23,14 +23,17 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { string } from 'vue-types'
+import { useLocalModelValue } from '@/composables/localModelValue.js'
 
 import JayCard from '@/components/base/JayCard.vue'
 import JayButton from '@/components/base/JayButton.vue'
 
 const props = defineProps({
-    region: string()
+    modelValue: string()
 })
-const emits = defineEmits(['select-region'])
+defineEmits(['update:modelValue'])
+
+const { localModelValue } = useLocalModelValue({ props })
 
 const REGIONS = ['Africa', 'Americas', 'Antarctica', 'Asia', 'Europe', 'Oceania'];
 const filterOptions = [
@@ -47,16 +50,16 @@ const filterOptions = [
 const isDropdownOpen = ref(false)
 const toggleDropdown = () => isDropdownOpen.value = !isDropdownOpen.value
 const dropdownTitle = computed(() => {
-    if (!props.region) {
+    if (!localModelValue.value) {
         return 'Region'
     }
-    return filterOptions.find(option => option.value === props.region)?.label
+    return filterOptions.find(option => option.value === props.modelValue)?.label
 })
 
 
 const onRegionSelect = (region) => {
     toggleDropdown()
-    emits('select-region', region.value)
+    localModelValue.value = region.value
 }
 
 </script>

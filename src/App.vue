@@ -8,7 +8,7 @@
             search by name or region, and filter by criteria. Learn about the world and its diversity with Atlas!</p>
         </header>
         <div class="filters">
-          <CountryFilters :region="regionFilter" @select-region="applyFilterRegion" />
+          <CountryFilters v-model="appliedRegionFilter" />
         </div>
       </JayRow>
       <JayRow v-show="visibleCountries.length" tag="ul" class="country-list">
@@ -31,8 +31,7 @@ import JayRow from '@/components/base/JayRow.vue'
 import CountryCard from '@/components/countries/CountryCard.vue'
 import CountryFilters from '@/components/countries/CountryFilters.vue'
 
-const regionFilter = ref(undefined)
-const applyFilterRegion = (region) => regionFilter.value = region
+const appliedRegionFilter = ref(undefined)
 const countries = [
   {
     "flags": {
@@ -228,8 +227,8 @@ const countries = [
   }
 ]
 const visibleCountries = computed(() => {
-  if (regionFilter.value) {
-    return countries.filter(country => country.region === regionFilter.value)
+  if (appliedRegionFilter.value) {
+    return countries.filter(country => country.region === appliedRegionFilter.value)
   }
   return countries
 })
