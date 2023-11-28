@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { shape, string, bool, number } from 'vue-types'
+import { shape, string, bool, number, object } from 'vue-types'
 
 import JayRow from '@/components/base/JayRow.vue'
 import JayCard from '@/components/base/JayCard.vue'
@@ -43,8 +43,9 @@ const props = defineProps({
         name: shape({
             common: string().isRequired,
             official: string().isRequired,
+            nativeName: object()
         }),
-        independent: bool().isRequired,
+        independent: bool(),
         region: string(),
         subregion: string().isRequired,
         population: number().isRequired

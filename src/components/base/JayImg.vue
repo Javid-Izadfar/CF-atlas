@@ -1,6 +1,6 @@
 <template>
     <div class="j-img">
-        <img class="j-img-content" :src="src" :alt="alt" :height="height" />
+        <img class="j-img-content" :src="src" :alt="alt" :height="height" loading="lazy"/>
     </div>
 </template>
 
