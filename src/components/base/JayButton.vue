@@ -20,6 +20,7 @@ defineProps({
 <style scoped>
 .j-button {
     display: inline-block;
+    text-decoration: none;
     user-select: none;
     font-family: Inter;
     justify-content: center;
