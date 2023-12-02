@@ -18,6 +18,7 @@ defineProps({
     width: 100%;
     margin: auto;
     overflow-x: hidden;
+    overflow-y: hidden;
     max-width: var(--container-max-width);
 }
 
