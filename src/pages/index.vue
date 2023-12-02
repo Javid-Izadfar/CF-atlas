@@ -47,7 +47,7 @@ const visibleCountries = computed(() => {
 
 const fetchCountries = async () => {
   isLoading.value = true
-  const fields = ['name', 'population', 'flags', 'subregion', 'region', 'independent']
+  const fields = ['name', 'population', 'flags', 'subregion', 'region', 'independent', 'cca3']
   const response = await fetch(`https://restcountries.com/v3.1/all?fields=${fields.join(',')}`)
   countries.value = await response.json()
   isLoading.value = false

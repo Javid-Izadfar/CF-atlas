@@ -16,7 +16,7 @@
             {{ description }}
         </p>
         <template #footer>
-            <JayButton tag="a" icon="angle-small-right">
+            <JayButton tag="router-link" :to="`country/${country.cca3}`" icon="angle-small-right">
                 Learn More
             </JayButton>
         </template>

@@ -8,6 +8,10 @@ export default createRouter({
             component: import('@/pages/index.vue')
         },
         {
+            path: '/country/:id',
+            component: import('@/pages/country.vue')
+        },
+        {
             path: '/:pathMatch(.*)*',
             component: import('@/pages/404.vue')
         }

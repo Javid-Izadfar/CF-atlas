@@ -13,7 +13,7 @@ import JayIcon from '@/components/base/JayIcon.vue'
 defineProps({
     icon: string(),
     isIconOnly: bool().def(false),
-    tag: oneOf(['button', 'span', 'a']).def('button')
+    tag: oneOf(['button', 'span', 'a', 'router-link']).def('button')
 })
 </script>
   
