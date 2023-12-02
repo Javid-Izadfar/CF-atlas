@@ -1,6 +1,5 @@
 <template>
   <div>
-    <RouterLink to="/about">go to about</RouterLink>
     <JayRow class="no-wrap align-center">
       <header class="title">
         <h1>Atlas: The Ultimate Guide to the World</h1>

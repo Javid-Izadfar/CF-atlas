@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <JayContainer>
-      <router-view/>
+      <RouterView/>
     </JayContainer>
   </div>
 </template>
